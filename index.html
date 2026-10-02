@@ -42,17 +42,18 @@
         }
 
 
+        html {
+            background: #292929;
+        }
+
         body {
+            position: relative;
+            isolation: isolate;
+
             margin: 0;
             min-height: 100vh;
 
-            background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(189, 122, 48, 0.08),
-                    transparent 35%
-                ),
-                var(--background);
+            background: #292929;
 
             color: var(--cream);
 
@@ -69,10 +70,44 @@
 
 
         /* =====================================================
+           ANIMATED BACKGROUND
+           ===================================================== */
+
+        .background-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            display: block;
+            pointer-events: none;
+            background: #292929;
+  	user-select: none;
+        }
+
+        .background-overlay {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(189, 122, 48, 0.08),
+                    transparent 35%
+                ),
+                rgba(0, 0, 0, 0.70);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* =====================================================
            MAIN CONTAINER
            ===================================================== */
 
         .page {
+            position: relative;
+            z-index: 2;
+
             width: 100%;
             max-width: 620px;
 
@@ -487,12 +522,40 @@
                 transition: none !important;
             }
         }
+/* Tablet */
+@media (min-width: 601px) and (max-width: 900px) {
+    .background-video {
+        object-position: 20% center;
+    }
+}
 
+/* Phone */
+@media (max-width: 600px) {
+    .background-video {
+        object-position: 15% center;
+    }
+}
     </style>
 </head>
 
 
 <body>
+
+    <video
+    class="background-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    aria-hidden="true"
+    draggable="false"
+>
+    <source src="Background.mp4" type="video/mp4">
+</video>
+
+<body oncontextmenu="return false;">
+
+    <div class="background-overlay" aria-hidden="true"></div>
 
     <main class="page">
 
