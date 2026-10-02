@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#292929">
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+    <meta
+        name="description"
+        content="Colty — Zelda, speedrunning, gaming and content."
+    >
+
+    <title>Colty</title>
+
+    <style>
+
+        :root {
+            --background: #292929;
+            --background-light: #313131;
+            --cream: #e3dac9;
+            --cream-muted: #aaa397;
+
+            --burgundy: #b92446;
+            --gold: #bd7a30;
+
+            --border: rgba(227, 218, 201, 0.14);
+            --border-hover: rgba(227, 218, 201, 0.35);
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(189, 122, 48, 0.08),
+                    transparent 35%
+                ),
+                var(--background);
+
+            color: var(--cream);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            display: flex;
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+           ===================================================== */
+
+        .page {
+            width: 100%;
+            max-width: 620px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        /* =====================================================
+           PROFILE
+           ===================================================== */
+
+        .profile {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+
+        .profile-image {
+            width: 118px;
+            height: 118px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 3px solid var(--cream);
+
+            box-shadow:
+                0 0 0 5px rgba(185, 36, 70, 0.18),
+                0 15px 40px rgba(0, 0, 0, 0.35);
+
+            margin-bottom: 22px;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .profile-image:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 0 6px rgba(185, 36, 70, 0.28),
+                0 18px 45px rgba(0, 0, 0, 0.45);
+        }
+
+
+        .name {
+            margin: 0;
+
+            font-size: 42px;
+            line-height: 1;
+
+            font-weight: 900;
+            font-style: italic;
+
+            letter-spacing: -2px;
+
+            color: var(--cream);
+        }
+
+
+        .tagline {
+            margin: 12px 0 0;
+
+            color: var(--cream-muted);
+
+            font-size: 14px;
+            font-weight: 700;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        .returning {
+            margin-top: 10px;
+
+            color: var(--gold);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           LINKS
+           ===================================================== */
+
+        .links {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+
+        .link {
+            position: relative;
+
+            width: 100%;
+            min-height: 70px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 12px 20px;
+
+            text-decoration: none;
+
+            color: var(--cream);
+
+            background:
+                rgba(49, 49, 49, 0.72);
+
+            border:
+                1px solid var(--border);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+
+            overflow: hidden;
+        }
+
+
+        .link::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 4px;
+
+            background:
+                var(--link-accent, var(--burgundy));
+
+            transform:
+                scaleY(0);
+
+            transform-origin:
+                bottom;
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        .link:hover {
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(227, 218, 201, 0.07);
+
+            border-color:
+                var(--border-hover);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .link:hover::before {
+            transform:
+                scaleY(1);
+        }
+
+
+        .link-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            margin-right: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #454545;
+            background: #292929;
+        }
+
+        .link-icon img {
+            width: 22px;
+            height: 22px;
+            display: block;
+        }
+
+
+        .link-content {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+
+        .link-title {
+            font-size: 16px;
+            font-weight: 800;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .link-description {
+            color: var(--cream-muted);
+
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+
+        .link-arrow {
+            margin-left: auto;
+            padding-left: 15px;
+
+            color: var(--cream-muted);
+
+            font-size: 18px;
+
+            transition:
+                transform 0.2s ease,
+                color 0.2s ease;
+        }
+
+
+        .link:hover .link-arrow {
+            transform:
+                translateX(4px);
+
+            color:
+                var(--cream);
+        }
+
+
+        /* =====================================================
+           PLATFORM ACCENTS
+           ===================================================== */
+
+        .twitch {
+            --link-accent: #9146ff;
+        }
+
+
+        .discord {
+            --link-accent: #5865f2;
+        }
+
+
+        .youtube {
+            --link-accent: #ff0033;
+        }
+
+
+        .speedrun {
+            --link-accent: var(--gold);
+        }
+
+
+        .vods {
+            --link-accent: #ff0033;
+        }
+
+
+        .bluesky {
+            --link-accent: #1185fe;
+        }
+
+
+        .instagram {
+            --link-accent: #e1306c;
+        }
+
+
+        .tiktok {
+            --link-accent: #ffffff;
+        }
+
+
+        .business-enquiry {
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .business-enquiry a {
+            color: var(--cream);
+            font-size: 14px;
+            font-weight: 900;
+            font-style: italic;
+            text-decoration: none;
+            letter-spacing: 0.2px;
+            transition: color 0.2s ease;
+        }
+
+        .business-enquiry a:hover {
+            color: var(--gold);
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            margin-top: 35px;
+
+            text-align: center;
+
+            color:
+                rgba(227, 218, 201, 0.4);
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding:
+                    35px 15px
+                    30px;
+            }
+
+
+            .profile {
+                margin-bottom: 25px;
+            }
+
+
+            .profile-image {
+                width: 100px;
+                height: 100px;
+            }
+
+
+            .name {
+                font-size: 36px;
+            }
+
+
+            .tagline {
+                font-size: 11px;
+                letter-spacing: 1.4px;
+            }
+
+
+            .link {
+                min-height: 64px;
+                padding: 10px 15px;
+            }
+
+
+            .link-icon {
+                width: 38px;
+                min-width: 38px;
+                height: 38px;
+
+                margin-right: 13px;
+            }
+
+
+            .link-title {
+                font-size: 15px;
+            }
+
+
+            .link-description {
+                font-size: 11px;
+            }
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+           ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before {
+                transition: none !important;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <main class="page">
+
+
+        <!-- =================================================
+             PROFILE
+             ================================================= -->
+
+        <header class="profile">
+
+            <img
+                src="profile.png"
+                alt="Colty"
+                class="profile-image"
+            >
+
+            <h1 class="name">
+                COLTY
+            </h1>
+
+            <p class="tagline">
+                Zelda • Speedrunning • Gaming
+            </p>
+
+            <div class="returning">
+                COLTY.ORG
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             LINKS
+             ================================================= -->
+
+        <nav
+            class="links"
+            aria-label="Colty links"
+        >
+
+            <a class="link twitch" href="https://www.twitch.tv/colty7" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/twitch/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">Twitch</span><span class="link-description">Live streams &amp; speedruns</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a class="link discord" href="https://discord.gg/DkMH7y9Ag3" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/discord/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">Discord</span><span class="link-description">Join the Colty community</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a class="link youtube" href="https://www.youtube.com/@Colty" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/youtube/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">YouTube</span><span class="link-description">Videos, guides &amp; highlights</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a class="link vods" href="https://www.youtube.com/@ColtyVODS" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/youtube/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">YouTube VODs</span><span class="link-description">Full streams &amp; archived gameplay</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a class="link bluesky" href="https://bsky.app/profile/colty.org" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/bluesky/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">Bluesky</span><span class="link-description">Updates &amp; community</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a class="link instagram" href="https://www.instagram.com/coltyseven/" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/instagram/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">Instagram</span><span class="link-description">Photos &amp; updates</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a class="link tiktok" href="https://www.tiktok.com/@Coltyseven" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon"><img src="https://cdn.simpleicons.org/tiktok/e3dac9" alt=""></div>
+                <div class="link-content"><span class="link-title">TikTok</span><span class="link-description">Short-form content</span></div>
+                <span class="link-arrow">→</span>
+            </a>
+
+        </nav>
+
+
+        <div class="business-enquiry">
+            <a href="mailto:coltyseven@gmail.com">
+                Business enquiries
+            </a>
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+             ================================================= -->
+
+        <footer>
+            COLTY.ORG
+            <br><br>
+            © 2026 COLTY
+        </footer>
+
+
+    </main>
+
+</body>
+</html>
